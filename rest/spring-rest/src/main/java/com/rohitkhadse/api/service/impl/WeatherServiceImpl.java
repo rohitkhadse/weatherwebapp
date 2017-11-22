@@ -36,10 +36,10 @@ public class WeatherServiceImpl implements WeatherService{
 
 	@Override
 	@Transactional(readOnly = true)
-	public Weather findOne(String id) {
-		Weather existing  = repository.findOne(id);
+	public Weather findOne(String city) {
+		Weather existing  = repository.findOne(city);
 		if (existing == null) {
-			throw new NotFoundException("Weather with id "+ id + "does not exist");
+			throw new NotFoundException("Weather with id "+ city + "does not exist");
 		}
 		return existing;
 	}
@@ -53,14 +53,14 @@ public class WeatherServiceImpl implements WeatherService{
 
 	@Override
 	@Transactional
-	public Weather update(String id, Weather user) {
-		Weather existing  = repository.findOne(id);
+	public Weather update(String id, Weather weather) {
+//		Weather existing  = repository.findOne(id);
+//		
+//		if (existing != null ) {
+//			throw new NotFoundException("Weather with id "+ id + "does not exist");
+//		}
 		
-		if (existing != null ) {
-			throw new NotFoundException("Weather with id "+ id + "does not exist");
-		}
-		
-		return repository.update( user);
+		return repository.update( weather);
 	}
 
 	@Override
@@ -73,5 +73,7 @@ public class WeatherServiceImpl implements WeatherService{
 		}
 		repository.delete(existing);
 	}
+
+	
 
 }

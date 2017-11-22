@@ -9,7 +9,7 @@ public interface WeatherRepository {
 	
 	public List<Weather> findAll();
 	
-	public Weather findOne(String id);
+	public Weather findOne(String city);
 	
 	public List<String> allCities();
 	

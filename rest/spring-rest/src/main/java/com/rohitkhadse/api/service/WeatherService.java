@@ -10,7 +10,7 @@ public interface WeatherService {
 	
 	public List<String> allCities();
 	
-	public Weather findOne(String id);
+	public Weather findOne(String city);
 	
 	public Weather create(Weather weather);
 	

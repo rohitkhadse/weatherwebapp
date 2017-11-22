@@ -45,9 +45,9 @@ public class WeatherController {
 		return service.allCities();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = URI.ID)
-	public Weather findOne(@PathVariable("id") String id){
-		return service.findOne(id);
+	@RequestMapping(method = RequestMethod.GET, value = "{city}")
+	public Weather findOne(@PathVariable("city") String city){
+		return service.findOne(city);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST )

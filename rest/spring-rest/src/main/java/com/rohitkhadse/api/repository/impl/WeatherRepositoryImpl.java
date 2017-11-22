@@ -32,10 +32,14 @@ public class WeatherRepositoryImpl implements WeatherRepository{
 		return query.getResultList();
 		
 	}
+	
 
 	@Override
-	public Weather findOne(String id) {
-		return em.find(Weather.class, id);
+	public Weather findOne(String city) {
+		TypedQuery<Weather> query = em.createNamedQuery("Weather.findCity", Weather.class);
+		query.setParameter("p", city);
+		query.setMaxResults(1);
+		return query.getSingleResult();
 	}
 
 	@Override
@@ -55,6 +59,8 @@ public class WeatherRepositoryImpl implements WeatherRepository{
 		em.remove(weather);
 		
 	}
+
+	
 
 	
 	

@@ -13,7 +13,8 @@ import javax.persistence.OneToOne;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Weather.findAll" , query="SELECT u FROM Weather u ORDER BY u.city"),
-	@NamedQuery(name="Weather.allCities" , query = "SELECT DISTINCT(u.city) FROM Weather u")
+	@NamedQuery(name="Weather.allCities" , query = "SELECT DISTINCT(u.city) FROM Weather u"),
+	@NamedQuery(name="Weather.findCity" , query = "SELECT u FROM Weather u WHERE u.city = :p ORDER BY u.timestamp DESC")
 })
 public class Weather {
 	

@@ -1,9 +1,7 @@
 package com.rohitkhadse.api.repository.impl;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.jws.soap.SOAPBinding.Use;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -25,6 +23,14 @@ public class WeatherRepositoryImpl implements WeatherRepository{
 	public List<Weather> findAll() {
 		TypedQuery<Weather> query = em.createNamedQuery("Weather.findAll", Weather.class);
 		return query.getResultList();
+	}
+	
+	@Override
+	public List<String> allCities() {
+		
+		TypedQuery<String> query = em.createNamedQuery("Weather.allCities", String.class);
+		return query.getResultList();
+		
 	}
 
 	@Override
@@ -49,7 +55,7 @@ public class WeatherRepositoryImpl implements WeatherRepository{
 		em.remove(weather);
 		
 	}
-	
-	
 
+	
+	
 }

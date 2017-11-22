@@ -2,14 +2,11 @@ package com.rohitkhadse.api.service.impl;
 
 import java.util.List;
 
-
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
 import com.rohitkhadse.api.entity.Weather;
-import com.rohitkhadse.api.exception.BadRequestException;
 import com.rohitkhadse.api.exception.NotFoundException;
 
 import com.rohitkhadse.api.repository.WeatherRepository;
@@ -29,6 +26,12 @@ public class WeatherServiceImpl implements WeatherService{
 	@Transactional(readOnly = true)
 	public List<Weather> findAll() {
 		return repository.findAll();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<String> allCities() {
+		return repository.allCities();
 	}
 
 	@Override

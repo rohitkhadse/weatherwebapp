@@ -11,6 +11,8 @@ public interface WeatherRepository {
 	
 	public Weather findOne(String id);
 	
+	public List<String> allCities();
+	
 	public Weather create(Weather weather);
 	
 	public Weather update(Weather weather);

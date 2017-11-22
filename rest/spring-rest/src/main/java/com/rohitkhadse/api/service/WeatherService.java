@@ -8,6 +8,8 @@ public interface WeatherService {
 
 	public List<Weather> findAll();
 	
+	public List<String> allCities();
+	
 	public Weather findOne(String id);
 	
 	public Weather create(Weather weather);

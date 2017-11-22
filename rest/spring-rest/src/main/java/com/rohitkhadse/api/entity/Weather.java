@@ -1,9 +1,6 @@
 package com.rohitkhadse.api.entity;
 
-
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -15,7 +12,8 @@ import javax.persistence.OneToOne;
 
 @Entity
 @NamedQueries({
-	@NamedQuery(name="Weather.findAll" , query="SELECT u FROM Weather u ORDER BY u.city")
+	@NamedQuery(name="Weather.findAll" , query="SELECT u FROM Weather u ORDER BY u.city"),
+	@NamedQuery(name="Weather.allCities" , query = "SELECT DISTINCT(u.city) FROM Weather u")
 })
 public class Weather {
 	

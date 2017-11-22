@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +35,14 @@ public class WeatherController {
 	public List<Weather> findAll(){
 		
 		return service.findAll();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/allcity")
+	public List<String> allCities(){
+//		List<Weather> list = service.allCities();
+//		list.forEach(city->System.out.println(city));
+	
+		return service.allCities();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = URI.ID)

@@ -10,11 +10,24 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
+
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Weather.findAll" , query="SELECT u FROM Weather u ORDER BY u.city"),
 	@NamedQuery(name="Weather.allCities" , query = "SELECT DISTINCT(u.city) FROM Weather u"),
-	@NamedQuery(name="Weather.findCity" , query = "SELECT u FROM Weather u WHERE u.city = :p ORDER BY u.timestamp DESC")
+	@NamedQuery(name="Weather.findCity" , query = "SELECT u FROM Weather u WHERE u.city = :p ORDER BY u.timestamp DESC"),
+	@NamedQuery(name="Weather.findProperty" , query = "SELECT u.city,u.temperature FROM Weather u WHERE u.city = :p "
+			+ "ORDER BY u.timestamp DESC"),
+	@NamedQuery(name="Weather.findHumidity" , query = "SELECT u.city,u.humidity FROM Weather u WHERE u.city = :p "
+			+ "ORDER BY u.timestamp DESC"),
+	@NamedQuery(name="Weather.findPressure" , query = "SELECT u.city,u.pressure FROM Weather u WHERE u.city = :p "
+			+ "ORDER BY u.timestamp DESC"),
+
+//	@NamedQuery(name="Weather.findWindSpeed" , query = "SELECT w.speed,w.degree FROM Wind w where w.id IN"
+//			+ "(select u.wind_id from Weather u where u.city = :p ORDER BY u.timestamp DESC)"),
+	@NamedQuery(name="Weather.findh" , query = "SELECT u.city,AVG(u.temperature),AVG(u.pressure),AVG(u.humidity) "
+			+ "FROM Weather u WHERE u.timestamp = :p ORDER BY u.timestamp DESC")
+	
 })
 public class Weather {
 	
@@ -68,7 +81,6 @@ public class Weather {
 	public void setTemperature(int temperature) {
 		this.temperature = temperature;
 	}
-
 
 	public Wind getWind() {
 		return wind;

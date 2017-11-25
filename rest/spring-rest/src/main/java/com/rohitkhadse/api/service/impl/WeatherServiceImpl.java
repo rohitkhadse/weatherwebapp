@@ -39,7 +39,7 @@ public class WeatherServiceImpl implements WeatherService{
 	public Weather findOne(String city) {
 		Weather existing  = repository.findOne(city);
 		if (existing == null) {
-			throw new NotFoundException("Weather with id "+ city + "does not exist");
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
 		}
 		return existing;
 	}
@@ -74,6 +74,40 @@ public class WeatherServiceImpl implements WeatherService{
 		repository.delete(existing);
 	}
 
+	@Override
+	public List<Weather> findProperty(String city) {
+		List<Weather> existing  = repository.findProperty(city);
+		if (existing == null) {
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
+		}
+		return existing;
+	}
 	
+	@Override
+	public List<Weather> findHumidity(String city) {
+		List<Weather> existing  = repository.findHumidity(city);
+		if (existing == null) {
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
+		}
+		return existing;
+	}
+
+	@Override
+	public List<Weather> findPressure(String city) {
+		List<Weather> existing  = repository.findPressure(city);
+		if (existing == null) {
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
+		}
+		return existing;
+	}
+
+	@Override
+	public String findWindSpeed(String city) {
+		String existing  = repository.findWindSpeed(city);
+		if (existing == null) {
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
+		}
+		return existing;
+	}
 
 }

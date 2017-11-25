@@ -50,11 +50,32 @@ public class WeatherController {
 		return service.findOne(city);
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "{city}/temperature")
+	public List<Weather> findProperty(@PathVariable("city") String city){
+		return service.findProperty(city);
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "{city}/humidity")
+	public List<Weather> findHumidity(@PathVariable("city") String city){
+		return service.findHumidity(city);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "{city}/pressure")
+	public List<Weather> findPressure(@PathVariable("city") String city){
+		return service.findPressure(city);
+	}
+	
+
+	@RequestMapping(method = RequestMethod.GET, value = "{city}/wind")
+	public String findWindSpeed(@PathVariable("city") String city){
+		return service.findWindSpeed(city);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST )
 	public Weather create(@RequestBody Weather user){
 		return service.create(user);
 	}
-	
 	
 	@RequestMapping(method = RequestMethod.PUT, value = URI.ID)
 	public Weather update(@PathVariable("id")String id,@RequestBody Weather user){

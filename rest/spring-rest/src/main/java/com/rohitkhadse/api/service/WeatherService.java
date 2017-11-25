@@ -12,9 +12,17 @@ public interface WeatherService {
 	
 	public Weather findOne(String city);
 	
+	public List<Weather> findProperty(String city);
+	
+	public List<Weather> findHumidity(String city);
+	
+	public List<Weather> findPressure(String city);
+	
 	public Weather create(Weather weather);
 	
 	public Weather update(String id, Weather weather);
 	
 	public void delete(String id);
+
+	public String findWindSpeed(String city);
 }

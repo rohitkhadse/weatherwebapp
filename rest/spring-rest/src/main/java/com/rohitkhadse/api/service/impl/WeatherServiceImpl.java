@@ -110,4 +110,21 @@ public class WeatherServiceImpl implements WeatherService{
 		return existing;
 	}
 
+	@Override
+	public String findWindDegree(String city) {
+		String existing  = repository.findWindDegree(city);
+		if (existing == null) {
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
+		}
+		return existing;
+	}
+
+	@Override
+	public List<Object[]> findAVG(String city) {
+		List<Object[]> existing  = repository.findAVG(city);
+		if (existing == null) {
+			throw new NotFoundException("Weather with city name="+ city + " does not exist");
+		}
+		return existing;
+	}
 }

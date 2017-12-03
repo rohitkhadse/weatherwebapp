@@ -25,4 +25,8 @@ public interface WeatherService {
 	public void delete(String id);
 
 	public String findWindSpeed(String city);
+	
+	public String findWindDegree(String city);
+	
+	public List<Object[]> findAVG(String city);
 }

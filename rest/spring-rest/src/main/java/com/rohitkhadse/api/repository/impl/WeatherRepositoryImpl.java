@@ -99,6 +99,37 @@ public class WeatherRepositoryImpl implements WeatherRepository{
 	}
 	
 	@Override
+	public String findWindDegree(String city) {
+		TypedQuery<Weather> query = (TypedQuery<Weather>) em.createQuery(""
+				+ "select u.wind from Weather u where u.city = :p ORDER BY u.timestamp DESC");
+		query.setParameter("p", city);
+		query.setMaxResults(1);
+		Object toRet = query.getSingleResult();
+		
+		String str = "";
+		int degree = 0;
+		
+		for (Field field : toRet.getClass().getDeclaredFields()) {
+		    field.setAccessible(true); // You might want to set modifier to public first.
+		    Object value = null;
+			try {
+				value = field.get(toRet);
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		    if (value != null) {
+		        System.out.println(field.getName() + "=" + value);
+		        //str += field.getName() + "=" + value;
+		        if(field.getName() == "degree")
+		        	str = String.valueOf(value);
+		    }
+		}
+		
+		return str.toString();
+	}
+	
+	@Override
 	public Weather create(Weather weather) {
 		em.persist(weather);
 		return weather;
@@ -116,12 +147,13 @@ public class WeatherRepositoryImpl implements WeatherRepository{
 		
 	}
 
-	
-
-	
-
-	
-
-	
+	@Override
+	public List<Object[]> findAVG(String city) {
+		@SuppressWarnings("unchecked")
+		TypedQuery<Object[]> query = (TypedQuery<Object[]>) em.createNamedQuery("Weather.findAVG");
+		query.setParameter("p", city);
+		query.setMaxResults(1);
+		return query.getResultList();
+	}	
 	
 }

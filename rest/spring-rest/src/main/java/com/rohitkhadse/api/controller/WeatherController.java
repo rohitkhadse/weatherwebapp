@@ -18,11 +18,15 @@ import com.rohitkhadse.api.entity.Weather;
 
 import com.rohitkhadse.api.service.WeatherService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @Component
 @ResponseBody
 
 @RestController
 @RequestMapping(value = "cities")
+@Api(tags="weather")
 public class WeatherController {
 
 	private WeatherService service;
@@ -32,6 +36,7 @@ public class WeatherController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
+	@ApiOperation(value = "Find All Cities", notes="Returns a list of cities with its weather" )
 	public List<Weather> findAll(){
 		
 		return service.findAll();
@@ -70,6 +75,16 @@ public class WeatherController {
 	@RequestMapping(method = RequestMethod.GET, value = "{city}/wind")
 	public String findWindSpeed(@PathVariable("city") String city){
 		return service.findWindSpeed(city);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "{city}/degree")
+	public String findWindDegree(@PathVariable("city") String city){
+		return service.findWindDegree(city);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "{city}/avg")
+	public List<Object[]> findAVG(@PathVariable("city") String city){
+		return service.findAVG(city);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST )

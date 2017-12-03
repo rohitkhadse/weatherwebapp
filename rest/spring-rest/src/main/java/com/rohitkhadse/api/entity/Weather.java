@@ -25,9 +25,9 @@ import javax.persistence.OneToOne;
 
 //	@NamedQuery(name="Weather.findWindSpeed" , query = "SELECT w.speed,w.degree FROM Wind w where w.id IN"
 //			+ "(select u.wind_id from Weather u where u.city = :p ORDER BY u.timestamp DESC)"),
-	@NamedQuery(name="Weather.findh" , query = "SELECT u.city,AVG(u.temperature),AVG(u.pressure),AVG(u.humidity) "
-			+ "FROM Weather u WHERE u.timestamp = :p ORDER BY u.timestamp DESC")
-	
+	@NamedQuery(name="Weather.findAVG" , query = "SELECT u.city,AVG(u.humidity),AVG(u.pressure),AVG(u.temperature)"
+			+ ",AVG(w.speed),AVG(w.degree)"
+			+ "FROM Weather u, Wind w WHERE u.city = :p GROUP BY HOUR(u.timestamp)")
 })
 public class Weather {
 	

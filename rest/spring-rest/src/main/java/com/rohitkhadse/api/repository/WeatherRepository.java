@@ -26,4 +26,8 @@ public interface WeatherRepository {
 	public void delete(Weather weather);
 
 	public String findWindSpeed(String city);
+	
+	public String findWindDegree(String city);
+	
+	public List<Object[]> findAVG(String city);
 }
